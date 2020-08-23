@@ -8,6 +8,7 @@ export const apiPostMockUser: RequestHandler = async (req, res, next) => {
   console.log(req.body);
   try {
     const newUser = {
+      id: req.body.id,
       role: req.body.role,
       username: req.body.username,
       password: req.body.password,

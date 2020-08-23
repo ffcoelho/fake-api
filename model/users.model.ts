@@ -6,6 +6,7 @@ export interface UserModel {
 }
 
 export interface UserDocModel extends Document {
+  id: string;
   role: string;
   password: string;
   token: string;
