@@ -3,9 +3,10 @@ import { UserModel, UserDocModel } from "../../model/users.model";
 
 const User = require("../../data/dbUser");
 
-export const apiPostAuthSignIn: RequestHandler = async (req, res, next) => {
+export const apiPostAuthLogin: RequestHandler = async (req, res, next) => {
   try {
-    const user: UserDocModel = await User.findByCredentials("user", "user");
+    const { username, password } = req.body;
+    const user: UserDocModel = await User.findByCredentials(username, password);
     if (!user) {
       return res.status(400).json({ error: "Bad Request" });
     }
@@ -13,8 +14,8 @@ export const apiPostAuthSignIn: RequestHandler = async (req, res, next) => {
       role: user.role,
       token: user.token
     };
-    res.status(201).json(userData);
-  } catch (e) {
+    res.status(200).json(userData);
+  } catch (error) {
     res.status(400).json({ error: "Bad Request" });
   }
 };

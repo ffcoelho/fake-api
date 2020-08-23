@@ -4,9 +4,6 @@ import jwt from "jsonwebtoken";
 import { UserDocModel } from "../model/users.model";
 
 const userSchema = new mongoose.Schema({
-  id: {
-    type: String
-  },
   role: {
     type: String
   },
@@ -31,7 +28,7 @@ userSchema.methods.hashPassword = async function() {
 
 userSchema.methods.generateAuthToken = async function() {
   const user = this;
-  const token = jwt.sign({id: user.id, role: user.role}, process.env.JWT_KEY || "jwtKey");
+  const token = jwt.sign({ role: user.role }, process.env.JWT_KEY || "jwtKey");
   user.token = token;
   await user.save();
   return token;

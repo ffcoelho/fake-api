@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { apiAuthRouter } from "./auth/apiAuthRouter";
-import { usersRouter } from "./users/apiUsers";
+
+import { apiMockRouter } from "./mock/apiMockRouter";
 
 export const routerApi = Router();
 
@@ -9,4 +10,5 @@ routerApi.get("/", (req, res) => {
 });
 
 routerApi.use("/auth", apiAuthRouter);
-routerApi.use("/users", usersRouter);
+
+routerApi.use("/mock", apiMockRouter);
