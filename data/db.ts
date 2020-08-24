@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
 export function connectDB() {
-  mongoose.connect(process.env.MONGODB || "mongodb://localhost:27017",
+  mongoose.connect(process.env.MONGODB || "mongodb://localhost:27017/fakeapi",
     {
-      dbName: "fakeapi",
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
