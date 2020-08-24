@@ -1,0 +1,495 @@
+{
+    "swaggerDoc": {
+        "swagger": "2.0",
+        "info": {
+            "description": "<h2>Fake online REST API: authentication, open and secure endpoints.</h2><ul><li><b>roles: </b><i>admin</i>, <i>user</i> and <i>default</i></li></ul><ul><li><b>admin</b><ul><li>username: <b>admin</b></li><li>password: <b>fakeadmin</b></li></li></ul></li></ul><ul><li><b>user</b><ul><li>username: <b>user</b></li><li>password: <b>fakeuser</b></li></ul></li></ul>",
+            "version": "1.0.0",
+            "title": "Fake API helper"
+        },
+        "host": "fake-api-helper.herokuapp.com",
+        "tags": [
+            {
+                "name": "Auth"
+            },
+            {
+                "name": "Open"
+            },
+            {
+                "name": "Secure"
+            }
+        ],
+        "schemes": [
+            "https"
+        ],
+        "paths": {
+            "/auth/signin": {
+                "post": {
+                    "tags": [
+                        "Auth"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseAuthData"
+                            }
+                        }
+                    }
+                }
+            },
+            "/auth/login": {
+                "post": {
+                    "tags": [
+                        "Auth"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "",
+                            "in": "body",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/RequestAuthBody"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseAuthData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                }
+            },
+            "/open": {
+                "get": {
+                    "tags": [
+                        "Open"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "post": {
+                    "tags": [
+                        "Open"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "patch": {
+                    "tags": [
+                        "Open"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "put": {
+                    "tags": [
+                        "Open"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        "Open"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "options": {
+                    "tags": [
+                        "Open"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "400": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                }
+            },
+            "/secure": {
+                "get": {
+                    "tags": [
+                        "Secure"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "401": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "post": {
+                    "tags": [
+                        "Secure"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "401": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "patch": {
+                    "tags": [
+                        "Secure"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "401": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "put": {
+                    "tags": [
+                        "Secure"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "401": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        "Secure"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "401": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                },
+                "options": {
+                    "tags": [
+                        "Secure"
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "Authorization",
+                            "description": "Bearer token",
+                            "in": "header",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseData"
+                            }
+                        },
+                        "401": {
+                            "description": "",
+                            "schema": {
+                                "$ref": "#/definitions/ResponseError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "ResponseData": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseAuthData": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "type": "string"
+                    },
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseError": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestAuthBody": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
