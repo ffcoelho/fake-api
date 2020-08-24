@@ -7,8 +7,6 @@ import { userAuth } from "../middleware/userAuth";
 import { userRole } from "../middleware/userRole";
 import { swaggerDoc } from './swagger.json';
 
-import { apiMockRouter } from "./mock/apiMockRouter";
-
 export const routerApi = Router();
 
 routerApi.use("/auth", apiAuthRouter);
@@ -16,5 +14,3 @@ routerApi.use("/open", userRole, apiOpenRouter);
 routerApi.use("/secure", userAuth, apiSecureRouter);
 routerApi.use("/", swaggerUi.serve);
 routerApi.get("/", swaggerUi.setup(swaggerDoc));
-
-routerApi.use("/mock", apiMockRouter);
