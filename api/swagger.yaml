@@ -11,18 +11,7 @@ tags:
 schemes:
 - "https"
 paths:
-  /auth/signin:
-    post:
-      tags:
-      - "Auth"
-      produces:
-      - "application/json"
-      responses:
-        201:
-          description: ""
-          schema:
-            $ref: "#/definitions/ResponseAuthData"
-  /auth/login:
+  /auth:
     post:
       tags:
       - "Auth"
