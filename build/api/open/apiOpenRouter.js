@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.apiOpenRouter = void 0;
 const express_1 = require("express");
 const apiRequestOpen_1 = require("./apiRequestOpen");
 exports.apiOpenRouter = express_1.Router();

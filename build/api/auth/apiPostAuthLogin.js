@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.apiPostAuthLogin = void 0;
 const User = require("../../data/dbUser");
 exports.apiPostAuthLogin = async (req, res, next) => {
     try {

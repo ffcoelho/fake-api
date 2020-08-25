@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.apiAuthRouter = void 0;
 const express_1 = require("express");
 const bodyParser_1 = require("../../middleware/bodyParser");
 const apiPostAuthSignIn_1 = require("./apiPostAuthSignIn");
