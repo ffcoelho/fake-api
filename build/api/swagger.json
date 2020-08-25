@@ -2,7 +2,7 @@
     "swaggerDoc": {
         "swagger": "2.0",
         "info": {
-            "description": "<h2>Fake online REST API: role based authentication, open and secure endpoints.</h2><ul><li><b>Roles: </b><i>admin</i>, <i>userA</i>, <i>userB</i>, <i>userC</i> ¹</li></ul><ul><li><b>Login</b><ul><li>username: <b><i>role</i></b></li><li>password: fakeapi</li></li></ul></li></ul><p>¹ Unauthorized request to /open returns <i>default</i> as role.</p> ",
+            "description": "<h2>Fake online REST API: role based authentication, open and secure endpoints.</h2><ul><li><b>Roles: </b><i>admin</i>,  <i>user</i>, <i>userA</i>, <i>userB</i>, <i>userC</i> ¹</li></ul><ul><li><b>Login</b><ul><li>username: <b><i>role</i></b></li><li>password: fakeapi</li></li></ul></li></ul><p>¹ Unauthorized request to /open returns <i>default</i> as role.</p> ",
             "version": "0.0.1",
             "title": "Fake API helper"
         },
