@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  description: "<h2>Fake online REST API: authentication, open and secure endpoints.</h2><ul><li><b>roles: </b><i>admin</i>, <i>user</i> and <i>default</i></li></ul><ul><li><b>admin</b><ul><li>username: <b>admin</b></li><li>password: <b>fakeadmin</b></li></li></ul></li></ul><ul><li><b>user</b><ul><li>username: <b>user</b></li><li>password: <b>fakeuser</b></li></ul></li></ul>"
-  version: "1.0.0"
+  description: "<h2>Fake online REST API: role based authentication, open and secure endpoints.</h2><ul><li><b>Roles: </b><i>admin</i>, <i>userA</i>, <i>userB</i>, <i>userC</i> ¹</li></ul><ul><li><b>Login</b><ul><li>username: <b><i>role</i></b></li><li>password: fakeapi</li></li></ul></li></ul><p>¹ Unauthorized request to /open returns <i>default</i> as role.</p> "
+  version: "0.0.1"
   title: "Fake API helper"
 host: "fake-api-helper.herokuapp.com"
 tags:
