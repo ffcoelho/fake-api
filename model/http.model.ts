@@ -20,3 +20,8 @@ export class HttpErrorValidator {
     }
   }
 }
+
+export interface FakeApiErrorModel {
+  status: number;
+  message: string;
+}

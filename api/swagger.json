@@ -2,7 +2,7 @@
   "swaggerDoc": {
     "swagger": "2.0",
     "info": {
-      "description": "<h2>Fake online REST API: role based authentication, open and secure endpoints.</h2><ul><li><b>Roles: </b><i>admin</i>,  <i>user</i>, <i>userA</i>, <i>userB</i>, <i>userC</i> ¹</li></ul><ul><li><b>Login</b><ul><li>username: <b><i>role</i></b></li><li>password: fakeapi</li></li></ul></li></ul><p>¹ Unauthorized request to /open returns <i>default</i> as role.</p> ",
+      "description": "<h2>Fake online REST API - authentication | open & secure endpoints | custom errors</h2><ul></ul><ul><li><b>Authentication</b><ul><li><i>username: </i><b>role</b></li><li><i>password: </i>fakeapi</li><br><li><b>roles: </b>```[admin, user, userA, userB, userC]¹```</li></li></ul><p>¹ Unauthorized request to <b>/open</b> returns <i>default</i> as role.</p></li></ul></li></ul><br><ul><li><b>Download</b><ul><li><a href=\"https://fake-api-helper.herokuapp.com/fake-api-helper-v0.0.1.zip\">docs</a> (Insomnia)</li></ul></li></ul>",
       "version": "0.0.1",
       "title": "Fake API helper"
     },
@@ -16,6 +16,9 @@
       },
       {
         "name": "Secure"
+      },
+      {
+        "name": "Errors"
       }
     ],
     "schemes": [
@@ -46,12 +49,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseAuthData"
               }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         }
@@ -79,12 +76,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         },
@@ -109,12 +100,6 @@
               "description": "",
               "schema": {
                 "$ref": "#/definitions/ResponseData"
-              }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
               }
             }
           }
@@ -141,12 +126,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         },
@@ -171,12 +150,6 @@
               "description": "",
               "schema": {
                 "$ref": "#/definitions/ResponseData"
-              }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
               }
             }
           }
@@ -203,12 +176,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         },
@@ -233,12 +200,6 @@
               "description": "",
               "schema": {
                 "$ref": "#/definitions/ResponseData"
-              }
-            },
-            "400": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
               }
             }
           }
@@ -267,12 +228,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "401": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         },
@@ -297,12 +252,6 @@
               "description": "",
               "schema": {
                 "$ref": "#/definitions/ResponseData"
-              }
-            },
-            "401": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
               }
             }
           }
@@ -329,12 +278,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "401": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         },
@@ -359,12 +302,6 @@
               "description": "",
               "schema": {
                 "$ref": "#/definitions/ResponseData"
-              }
-            },
-            "401": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
               }
             }
           }
@@ -391,12 +328,6 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "401": {
-              "description": "",
-              "schema": {
-                "$ref": "#/definitions/ResponseError"
-              }
             }
           }
         },
@@ -422,11 +353,163 @@
               "schema": {
                 "$ref": "#/definitions/ResponseData"
               }
-            },
-            "401": {
+            }
+          }
+        }
+      },
+      "/ALL": {
+        "get": {
+          "tags": [
+            "Errors"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "",
+              "description": "",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/RequestFakeApiBody"
+              }
+            }
+          ],
+          "responses": {
+            "999": {
               "description": "",
               "schema": {
-                "$ref": "#/definitions/ResponseError"
+                "$ref": "#/definitions/ResponseFakeApiError"
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Errors"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "",
+              "description": "",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/RequestFakeApiBody"
+              }
+            }
+          ],
+          "responses": {
+            "999": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/ResponseFakeApiError"
+              }
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Errors"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "",
+              "description": "",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/RequestFakeApiBody"
+              }
+            }
+          ],
+          "responses": {
+            "999": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/ResponseFakeApiError"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Errors"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "",
+              "description": "",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/RequestFakeApiBody"
+              }
+            }
+          ],
+          "responses": {
+            "999": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/ResponseFakeApiError"
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Errors"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "",
+              "description": "",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/RequestFakeApiBody"
+              }
+            }
+          ],
+          "responses": {
+            "999": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/ResponseFakeApiError"
+              }
+            }
+          }
+        },
+        "options": {
+          "tags": [
+            "Errors"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "",
+              "description": "",
+              "in": "body",
+              "schema": {
+                "$ref": "#/definitions/RequestFakeApiBody"
+              }
+            }
+          ],
+          "responses": {
+            "999": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/ResponseFakeApiError"
               }
             }
           }
@@ -453,9 +536,12 @@
           }
         }
       },
-      "ResponseError": {
+      "ResponseFakeApiError": {
         "type": "object",
         "properties": {
+          "role": {
+            "type": "string"
+          },
           "error": {
             "type": "string"
           }
@@ -468,6 +554,25 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "RequestFakeApiBody": {
+        "type": "object",
+        "properties": {
+          "fakeApi": {
+            "$ref": "#/definitions/FakeApiObj"
+          }
+        }
+      },
+      "FakeApiObj": {
+        "type": "object",
+        "properties": {
+          "errStatus": {
+            "type": "number"
+          },
+          "errMessage": {
             "type": "string"
           }
         }

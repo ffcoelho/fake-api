@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { UserDocModel } from "../model/users.model";
+import { TokenModel } from "../model/token.model";
 
 const userSchema = new mongoose.Schema({
   id: {
@@ -47,6 +48,16 @@ userSchema.statics.findByCredentials = async (username: string, password: string
     if (!isPasswordMatch) {
       throw new Error();
     }
+    return user;
+  }
+}
+
+userSchema.statics.findAuthenticated = async (token: string) => {
+  const verifiedToken: TokenModel = jwt.verify(token, process.env.JWT_KEY || "jwtKey") as TokenModel;
+  const user: UserDocModel = await User.findOne({ id: verifiedToken.id, token: token }) as UserDocModel;
+  if (!user) {
+    throw new Error();
+  } else {
     return user;
   }
 }
