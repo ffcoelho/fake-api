@@ -1,5 +1,10 @@
 import { Document } from "mongoose";
 
+export interface TokenModel {
+  id: string;
+  role: string;
+}
+
 export interface UserModel {
   id: string;
   role: string;

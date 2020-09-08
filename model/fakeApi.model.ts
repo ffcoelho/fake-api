@@ -4,14 +4,18 @@ import { FileDocModel } from "./file.model";
 export interface FakeApiResponseModel {
   auth: boolean;
   role: string;
-  data?: MockResponseModel;
+  mock?: MockResponseModel;
   file?: FileResponseModel;
   message?: string;
   user?: AuthResponseModel;
 }
 
 export interface MockResponseModel {
-  users: PublicUserModel[];
+  data: any[];
+  page: number;
+  count: number;
+  nextPage?: number;
+  nextPageUrl?: string;
 }
 
 export interface FileResponseModel {
@@ -28,13 +32,6 @@ export interface AuthResponseModel {
   photoUrl: string;
   role: string;
   token: string;
-}
-
-export interface PublicUserModel {
-  username: string;
-  name: string;
-  email: string;
-  photoUrl: string;
 }
 
 export enum FakeApiResponseType {
@@ -58,7 +55,7 @@ export class FakeApiResponse {
         this.fileRes(baseObj);
         break;
       case FakeApiResponseType.MOCK:
-        this.obj.data = baseObj;
+        this.obj.mock = baseObj;
         break;
       case FakeApiResponseType.ERROR:
         this.obj.message = baseObj;
@@ -107,5 +104,44 @@ export class FakeErrorValidator {
     } catch (e) {
       return false;
     }
+  }
+}
+
+export class FakeResponsePagination {
+
+  data: any[];
+  page: number;
+  count: number;
+  nextPage?: number;
+  nextPageUrl?: string;
+
+  constructor(baseObj: any[], type: string, page: number, count: number) {
+    this.page = page;
+    this.count = count;
+    this.nextPage = page + 1;
+    this.nextPageUrl = `http://localhost:9000/mock/${type}?page=${this.nextPage}&count=${this.count}`;
+    this.data = [];
+    this.listSelection(baseObj);
+  }
+
+  listSelection(baseList: any[]): void {
+    if (1 > this.count || this.count > 50) {
+      throw new Error();
+    }
+    if (1 > this.page || this.page > 100) {
+      throw new Error();
+    }
+    const start = (this.page - 1) * this.count;
+    let end = (start + this.count);
+    if (start > 99) {
+      throw new Error();
+    }
+    if (end > 100) {
+      this.nextPage = undefined;
+      this.nextPageUrl = undefined;
+      this.count = 100 - start;
+      end = 100;
+    }
+    this.data = baseList.slice(start, end);
   }
 }

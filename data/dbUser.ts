@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { UserDocModel } from "../model/user.model";
-import { TokenModel } from "../model/token.model";
+import { UserDocModel, TokenModel } from "../model/user.model";
 
 const userSchema = new mongoose.Schema({
   id: {

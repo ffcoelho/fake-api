@@ -1,15 +1,9 @@
 import { Router } from "express";
-import { jsonParser } from "../../middleware/bodyParser";
+import { urlEncodedParser } from "../../middleware/bodyParser";
+import { apiMockGetType } from "./apiMockGetType";
 import { apiMockHelper } from "./apiMockHelper";
 
 export const apiMockRouter = Router();
 
-apiMockRouter.route("/").post(jsonParser, apiMockHelper);
-
-// apiMocksRouter.route("/")
-  // .get(apiRequestOpen)
-  // .post(apiRequestOpen)
-  // .patch(apiRequestOpen)
-  // .put(apiRequestOpen)
-  // .delete(apiRequestOpen)
-  // .options(apiRequestOpen);
+apiMockRouter.route("/").post(apiMockHelper);
+apiMockRouter.route("/:type").get(urlEncodedParser, apiMockGetType);
