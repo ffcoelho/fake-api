@@ -1,11 +1,12 @@
 import request from "request";
 import { UserRequestHandler } from "../model/express.model";
+import { FakeApiResponse, FakeApiResponseType } from "../model/fakeApi.model";
 
 export const fileUploader: UserRequestHandler = async (req, res, next) => {
   try {
-    const postFile = request.post(process.env.BUCKETAPI || "http://localhost:3000/", function (err, resp, body) {
+    const postFile = request.post(process.env.STORAGE_API_UPLOAD_URL || "http://localhost:3000/", function (err, resp, body) {
       if (err) {
-        return res.status(400).json({ error: "FakeApiHelper: error" });
+        throw new Error();
       } else {
         const apiResp = JSON.parse(body);
         req.uploadedFile = {
@@ -24,7 +25,7 @@ export const fileUploader: UserRequestHandler = async (req, res, next) => {
       contentType: req.file.mimetype
     });
   } catch (err) {
-    console.log(err);
-    res.status(400).json({ error: "FakeApiHelper: error" });
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "Something went wrong");
+    return res.status(400).json(apiRes.obj);
   }
 }

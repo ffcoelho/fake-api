@@ -13,6 +13,9 @@ const fileSchema = new mongoose.Schema({
   fileType: {
     type: String
   },
+  fileSize: {
+    type: String
+  },
   key: {
     type: String
   },
@@ -27,6 +30,7 @@ const fileSchema = new mongoose.Schema({
 fileSchema.methods.generateId = async function() {
   const file = this;
   file.id = uuidv4().replace(/-/g, '');
+  await file.save();
 }
 
 fileSchema.statics.findById = async (id: string) => {

@@ -1,5 +1,5 @@
 import { UserRequestHandler } from "../model/express.model";
-import { UserDocModel } from "../model/users.model";
+import { UserDocModel } from "../model/user.model";
 
 const User = require("../data/dbUser");
 

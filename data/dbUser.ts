@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { UserDocModel } from "../model/users.model";
+import { UserDocModel } from "../model/user.model";
 import { TokenModel } from "../model/token.model";
 
 const userSchema = new mongoose.Schema({
@@ -13,6 +13,15 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   username: {
+    type: String
+  },
+  name: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  photoUrl: {
     type: String
   },
   password: {
@@ -36,7 +45,6 @@ userSchema.methods.generateAuthToken = async function() {
   const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_KEY || "jwtKey");
   user.token = token;
   await user.save();
-  return token;
 }
 
 userSchema.statics.findByCredentials = async (username: string, password: string) => {

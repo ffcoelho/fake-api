@@ -1,34 +1,30 @@
 import { UserRequestHandler } from "../../model/express.model";
-import { FileModel, FileResponseModel } from "../../model/file.model";
+import { FileModel } from "../../model/file.model";
+import { FakeApiResponse, FakeApiResponseType } from "../../model/fakeApi.model";
 
 const File = require("../../data/dbFile");
 
 export const apiFilePostUpload: UserRequestHandler = async (req, res, next) => {
-  if (req.fakeApiError) {
-    return res.status(req.fakeApiError.status).json({ role: req.role, error: req.fakeApiError.message });
-  }
-  if (!req.uploadedFile) {
-    return res.status(400).json({ error: "FakeApiHelper: error" });
-  }
   try {
+    if (!req.uploadedFile) {
+      throw new Error();
+    }
     const uploadedFile: FileModel = {
       id: "",
       fileName: req.uploadedFile.fileName,
       fileType: req.uploadedFile.fileType,
+      fileSize: req.uploadedFile.fileSize,
       key: req.uploadedFile.key,
       expires: req.uploadedFile.dateTime + 3600000
     };
     const file = new File(uploadedFile);
     await file.generateId();
-    await file.save();
-    const resObj: FileResponseModel = {
-      id: file.id,
-      fileName: req.uploadedFile.fileName,
-      fileSize: req.uploadedFile.fileSize,
-      url: `http://localhost:9000/open/download/${file.id}`
-    };
-    res.status(201).json(resObj);
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.FILE, file);
+    apiRes.obj.role = req.role || "default";
+    apiRes.obj.auth = apiRes.obj.role !== "default";
+    res.status(201).json(apiRes.obj);
   } catch (err) {
-    res.status(400).json({ error: "FakeApiHelper: error" });
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "Something went wrong");
+    return res.status(400).json(apiRes.obj);
   }
 };

@@ -1,6 +1,10 @@
 import { Router } from "express";
+import { jsonParser } from "../../middleware/bodyParser";
+import { apiMockHelper } from "./apiMockHelper";
 
-export const apiMocksRouter = Router();
+export const apiMockRouter = Router();
+
+apiMockRouter.route("/").post(jsonParser, apiMockHelper);
 
 // apiMocksRouter.route("/")
   // .get(apiRequestOpen)

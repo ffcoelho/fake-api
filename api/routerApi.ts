@@ -1,11 +1,11 @@
 import { Router } from "express";
 import swaggerUi, { SwaggerUiOptions } from 'swagger-ui-express';
 import { jsonParser } from "../middleware/bodyParser";
+import { fakeErrorHandler } from "../middleware/fakeErrorHandler";
 import { userRole } from "../middleware/userRole";
-import { fakeApi } from "../middleware/fakeApi";
 import { apiAuthRouter } from "./auth/apiAuthRouter";
 import { apiFileRouter } from "./file/apiFileRouter";
-import { apiMocksRouter } from "./mocks/apiMocksRouter";
+import { apiMockRouter } from "./mock/apiMockRouter";
 import { swaggerDoc } from './swagger.json';
 
 const swaggerOpts: SwaggerUiOptions = {
@@ -18,8 +18,8 @@ const swaggerOpts: SwaggerUiOptions = {
 
 export const routerApi = Router();
 
-routerApi.use("/auth", jsonParser, fakeApi, apiAuthRouter);
-routerApi.use("/file", jsonParser, userRole, fakeApi, apiFileRouter);
-routerApi.use("/mocks", jsonParser, userRole, fakeApi, apiMocksRouter);
+routerApi.use("/auth", jsonParser, fakeErrorHandler, apiAuthRouter);
+routerApi.use("/file", jsonParser, userRole, fakeErrorHandler, apiFileRouter);
+routerApi.use("/mock", jsonParser, userRole, fakeErrorHandler, apiMockRouter);
 routerApi.use("/", swaggerUi.serve);
 routerApi.get("/", swaggerUi.setup(swaggerDoc, swaggerOpts));

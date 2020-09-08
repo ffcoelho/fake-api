@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { FakeApiErrorModel } from "./http.model";
+import { FakeApiHelperModel } from "./http.model";
 import { UploadedFileModel } from "./file.model";
 
 export interface UserRequest extends Request {
   role?: string;
-  fakeApiError?: FakeApiErrorModel;
+  fakeApi?: FakeApiHelperModel;
   uploadedFile?: UploadedFileModel;
 }
 

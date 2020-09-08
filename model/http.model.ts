@@ -1,3 +1,20 @@
+export interface FakeApiHelperModel {
+
+  fakeError?: FakeApiErrorModel;
+}
+
+export interface FakeApiResponseModel {
+  file?: any;
+  message?: string;
+  mock?: any;
+  user?: any;
+}
+
+export interface FakeApiErrorModel {
+  status: number;
+  msg?: string;
+}
+
 export class HttpErrorValidator {
 
   errors: number[] = [
@@ -19,9 +36,4 @@ export class HttpErrorValidator {
       return false;
     }
   }
-}
-
-export interface FakeApiErrorModel {
-  status: number;
-  message: string;
 }
