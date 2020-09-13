@@ -13,6 +13,10 @@ export  const customMock: UserRequestHandler = async (req, res, next) => {
     if (req.params.type !== "custom") {
       return next();
     }
+    if (!req.query.path) {
+      const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: No path provided");
+      return res.status(400).json(apiRes.obj);
+    }
     request.get({ url: `http://dontpad.com/${req.query.path}` }, (error: any, response: { statusCode: any; }, body: any) => {
       if (error) {
         const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: invalid folder");

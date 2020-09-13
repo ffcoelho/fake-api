@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>FFCoelho</title>
+  <title>Fake API helper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="styles.css">
@@ -12,11 +12,12 @@
   <div class="container">
     <div class="header">
       <h1>Fake API helper</h1>
+      <span>ffcoelho</span>
     </div>
     <div class="content">
 
       <div class="content-info">
-        <p>Online REST API for developers.</p>
+        <p>Online fake REST API for developers.</p>
         <p>Auth, Mock, File and Error.</p>
         <p>Insomnia docs: <a href="https://fake-api-helper.herokuapp.com/docs0.1.0.zip">download</a></p>
       </div>
@@ -24,7 +25,7 @@
       <h2>Base URL</h2>
       <p class="mono">https://fake-api-helper.herokuapp.com</p>
 
-      <h2>Authentication</h2>
+      <h2>Auth</h2>
 
       <h3>Login</h3>
       <div class="route-header">
@@ -150,7 +151,7 @@
       </div>
       <div class="description">
         <p class="mono">Use a <a href="http://dontpad.com" target="_blank">DONTPAD</a> folder with JSON content</p>
-        <p class="mono">http://dontpad.com/{folder}</p>
+        <p class="mono">http://dontpad.com/<span class="h-desc mono">{folder}</span></p>
       </div>
       <p class="route-info">Request header</p>
       <div class="highlight mono">
@@ -160,9 +161,9 @@
       </div>
       <p class="route-info">Request query <span class="param-req mono">*required</span></p>
       <div class="highlight mono">
-<pre><span class="h-w">Name          Value</span>
+<pre><span class="h-w">Name                    Value</span>
 
-<span class="h-w">path          {folder}</span></pre>
+<span class="h-w">path                    {folder}</span></pre>
       </div>
       <p class="route-info">Response - 200</p>
       <div class="highlight mono">
@@ -185,15 +186,15 @@
       </div>
       <p class="route-info">Request header</p>
       <div class="highlight mono">
-<pre><span class="h-w">Name                Value</span>
+<pre><span class="h-w">Name                    Value</span>
 
-<span class="h-w">Authorization       Bearer token</span></pre>
+<span class="h-w">Authorization           Bearer token</span></pre>
       </div>
       <p class="route-info">Request body - multipart/form-data <span class="param-req mono">*required</span></p>
       <div class="highlight mono">
-<pre><span class="h-w">Name                Value</span>
+<pre><span class="h-w">Name                    Value</span>
 
-<span class="h-w">file                File</span></pre>
+<span class="h-w">file                    File</span></pre>
       </div>
       <p class="route-info">Response - 200</p>
       <div class="highlight mono">

@@ -83,6 +83,13 @@ h3 {
   background-color: #42526E;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.14), 0px 3px 3px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.2);
 }
+.header > span {
+  position: absolute;
+  top: 3px;
+  left: calc(50% + 50px);
+  font-size: 9px;
+  color: #8E99AD;
+}
 
 /* text */
 
@@ -95,12 +102,10 @@ span {
   font-size: 12px;
 }
 
-a.link, a.link:visited {
+a, a:visited {
   font-weight: 600;
   text-decoration: underline;
-}
-a.ref-link, a.ref-link:visited {
-  text-decoration: underline;
+  color: #0F0F0F;
 }
 
 /* content */
@@ -160,6 +165,10 @@ a.ref-link, a.ref-link:visited {
 .description > p:nth-of-type(2) {
   margin-top: 8px;
 }
+.description > p > span.h-desc {
+  font-size: 11px;
+  font-weight: 600;
+}
 
 .route-info {
   margin: 7px 0;
@@ -208,6 +217,9 @@ a.ref-link, a.ref-link:visited {
   .header {
     height: 40px;
   }
+  .header > span {
+    top: 5px;
+  }
   .content {
     width: calc(100% - 40px);
     padding-top: 40px;
@@ -226,6 +238,11 @@ a.ref-link, a.ref-link:visited {
   }
   .header {
     height: 44px;
+  }
+  .header > span {
+    top: 7px;
+    left: calc(50% + 59px);
+    font-size: 10px;
   }
   .content {
     width: 100%;
