@@ -10,10 +10,6 @@ export  const customMock: UserRequestHandler = async (req, res, next) => {
       const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: something went wrong");
       return res.status(400).json(apiRes.obj);
     }
-    if (!req.query.path) {
-      const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: no path provided");
-      return res.status(400).json(apiRes.obj);
-    }
     if (req.params.type !== "custom") {
       return next();
     }
