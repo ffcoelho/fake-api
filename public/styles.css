@@ -98,11 +98,9 @@ span {
 a.link, a.link:visited {
   font-weight: 600;
   text-decoration: underline;
-  color: #0F0F0F;
 }
 a.ref-link, a.ref-link:visited {
   text-decoration: underline;
-  color: #0F0F0F;
 }
 
 /* content */

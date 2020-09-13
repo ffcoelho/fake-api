@@ -142,6 +142,36 @@
 <span class="h-w">}</span></pre>
       </div>
 
+      <h3>Custom mock</h3>
+      <div class="route-header">
+        <p class="method post">GET</p>
+        <span class="route mono">/mock/custom?path=folder</span>
+      </div>
+      <div class="description">
+        <p class="mono">Use a <a href="http://dontpad.com" target="_blank">DONTPAD</a> folder with JSON content</p>
+        <p class="mono">http://dontpad.com/{folder}</p>
+      </div>
+      <p class="route-info">Request header</p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name                    Value</span>
+
+<span class="h-w">Authorization           Bearer token</span></pre>
+      </div>
+      <p class="route-info">Request query <span class="param-req mono">*required</span></p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name          Value</span>
+
+<span class="h-w">path          {folder}</span></pre>
+      </div>
+      <p class="route-info">Response - 200</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w"><span class="h-p">"auth"</span>: <span class="h-a">true</span>,</span>
+  <span class="h-w"><span class="h-p">"role"</span>: <span class="h-v">"user"</span>,</span>
+  <span class="h-w"><span class="h-p">"mock"</span>: ...</span>
+<span class="h-w">}</span></pre>
+      </div>
+
       <h2>File</h2>
       <h3>Upload</h3>
       <div class="route-header">

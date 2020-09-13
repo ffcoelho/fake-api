@@ -16,9 +16,10 @@ export const apiFileGetDownload: UserRequestHandler = async (req, res, next) => 
       const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: invalid file id");
       return res.status(400).json(apiRes.obj);
     }
-    request.get({ url: `${process.env.STORAGE_API_DOWNLOAD_URL || "http://localhost:3000/"}${file.key}`, encoding: null }, async (err, resp, body) => {
+    request.get({ url: `${process.env.API_DOWNLOAD_URL || "http://localhost:3000/"}${file.key}`, encoding: null }, async (err, resp, body) => {
       if (err) {
-        throw new Error();
+        const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: download error");
+        return res.status(400).json(apiRes.obj);
       }
       await File.deleteById(req.params.id);
       res.attachment(file.fileName).contentType(file.fileType).send(body);

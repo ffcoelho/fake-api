@@ -4,9 +4,10 @@ import { FakeApiResponse, FakeApiResponseType } from "../model/fakeApi.model";
 
 export const fileUploader: UserRequestHandler = async (req, res, next) => {
   try {
-    const postFile = request.post(process.env.STORAGE_API_UPLOAD_URL || "http://localhost:3000/", function (err, resp, body) {
+    const postFile = request.post(process.env.API_UPLOAD_URL || "http://localhost:3000/", function (err, resp, body) {
       if (err) {
-        throw new Error();
+        const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: upload error");
+        return res.status(400).json(apiRes.obj);
       } else {
         const apiResp = JSON.parse(body);
         req.uploadedFile = {

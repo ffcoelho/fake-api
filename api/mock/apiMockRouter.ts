@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { urlEncodedParser } from "../../middleware/bodyParser";
+import { customMock } from "../../middleware/customMock";
 import { apiMockGetType } from "./apiMockGetType";
-import { apiMockHelper } from "./apiMockHelper";
 
 export const apiMockRouter = Router();
 
-apiMockRouter.route("/").post(apiMockHelper);
-apiMockRouter.route("/:type").get(urlEncodedParser, apiMockGetType);
+apiMockRouter.route("/:type").get(urlEncodedParser, customMock, apiMockGetType);
