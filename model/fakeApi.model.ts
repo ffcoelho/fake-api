@@ -79,7 +79,7 @@ export class FakeApiResponse {
   fileRes(baseFile: FileDocModel): void {
     this.obj.file = {
       id: baseFile.id,
-      url: `http://localhost:9000/file/download/${baseFile.id}`,
+      url: `/file/download/${baseFile.id}`,
       fileName: baseFile.fileName,
       fileSize: baseFile.fileSize
     }
@@ -125,7 +125,7 @@ export class FakeResponsePagination {
     this.page = page;
     this.count = count;
     this.nextPage = page + 1;
-    this.nextPageUrl = `http://localhost:9000/mock/${type}?page=${this.nextPage}&count=${this.count}`;
+    this.nextPageUrl = `/mock/${type}?page=${this.nextPage}&count=${this.count}`;
     this.data = [];
     if (baseObj.length === 0) {
       this.fakePages();
