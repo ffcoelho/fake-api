@@ -2,8 +2,8 @@ import { UserDocModel } from "./user.model";
 import { FileDocModel } from "./file.model";
 
 export interface FakeApiResponseModel {
-  auth: boolean;
-  role: string;
+  auth?: boolean;
+  role?: string;
   mock?: MockResponseModel;
   file?: FileResponseModel;
   message?: string;
@@ -58,7 +58,7 @@ export class FakeApiResponse {
         this.obj.mock = baseObj;
         break;
       case FakeApiResponseType.ERROR:
-        this.obj.message = baseObj;
+        this.errRes(baseObj);
         break;
     }
   }
@@ -72,8 +72,8 @@ export class FakeApiResponse {
       role: baseUser.role,
       token: baseUser.token
     }
-    this.obj.role = baseUser.role;
-    this.obj.auth = true;
+    this.obj.auth = undefined;
+    this.obj.role = undefined;
   }
 
   fileRes(baseFile: FileDocModel): void {
@@ -83,6 +83,12 @@ export class FakeApiResponse {
       fileName: baseFile.fileName,
       fileSize: baseFile.fileSize
     }
+  }
+
+  errRes(baseError: string): void {
+    this.obj.message = baseError;
+    this.obj.auth = undefined;
+    this.obj.role = undefined;
   }
 }
 
@@ -121,11 +127,15 @@ export class FakeResponsePagination {
     this.nextPage = page + 1;
     this.nextPageUrl = `http://localhost:9000/mock/${type}?page=${this.nextPage}&count=${this.count}`;
     this.data = [];
-    this.listSelection(baseObj);
+    if (baseObj.length === 0) {
+      this.fakePages();
+    } else {
+      this.listSelection(baseObj);
+    }
   }
 
   listSelection(baseList: any[]): void {
-    if (1 > this.count || this.count > 50) {
+    if (1 > this.count || this.count > 100) {
       throw new Error();
     }
     if (1 > this.page || this.page > 100) {
@@ -136,12 +146,28 @@ export class FakeResponsePagination {
     if (start > 99) {
       throw new Error();
     }
-    if (end > 100) {
+    if (end > 99) {
       this.nextPage = undefined;
       this.nextPageUrl = undefined;
       this.count = 100 - start;
       end = 100;
     }
     this.data = baseList.slice(start, end);
+  }
+
+  fakePages(): void {
+    if (1 > this.count || this.count > 100) {
+      throw new Error();
+    }
+    if (1 > this.page || this.page > 1000) {
+      throw new Error();
+    }
+    const n0 = (this.page - 1) * this.count + 1;
+    const baseList = Array.from({length: this.count}).map((value: any, idx: number) => value = { n: n0 + idx });
+    if (this.page === 1000) {
+      this.nextPage = undefined;
+      this.nextPageUrl = undefined;
+    }
+    this.data = baseList;
   }
 }

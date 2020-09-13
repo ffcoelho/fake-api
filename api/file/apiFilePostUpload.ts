@@ -22,9 +22,9 @@ export const apiFilePostUpload: UserRequestHandler = async (req, res, next) => {
     const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.FILE, file);
     apiRes.obj.role = req.role || "default";
     apiRes.obj.auth = apiRes.obj.role !== "default";
-    res.status(201).json(apiRes.obj);
+    res.status(200).json(apiRes.obj);
   } catch (err) {
-    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "Something went wrong");
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: upload error");
     return res.status(400).json(apiRes.obj);
   }
 };

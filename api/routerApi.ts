@@ -1,8 +1,9 @@
 import { Router } from "express";
 import swaggerUi, { SwaggerUiOptions } from 'swagger-ui-express';
 import { jsonParser } from "../middleware/bodyParser";
-import { fakeErrorHandler } from "../middleware/fakeErrorHandler";
+import { fakeStatusHandler } from "../middleware/fakeStatusHandler";
 import { userRole } from "../middleware/userRole";
+import { apiGetDocs } from "./apiGetDocs";
 import { apiAuthRouter } from "./auth/apiAuthRouter";
 import { apiFileRouter } from "./file/apiFileRouter";
 import { apiMockRouter } from "./mock/apiMockRouter";
@@ -18,8 +19,9 @@ const swaggerOpts: SwaggerUiOptions = {
 
 export const routerApi = Router();
 
-routerApi.use("/auth", jsonParser, fakeErrorHandler, apiAuthRouter);
-routerApi.use("/file", jsonParser, userRole, fakeErrorHandler, apiFileRouter);
-routerApi.use("/mock", jsonParser, userRole, fakeErrorHandler, apiMockRouter);
-routerApi.use("/", swaggerUi.serve);
-routerApi.get("/", swaggerUi.setup(swaggerDoc, swaggerOpts));
+routerApi.use("/auth", jsonParser, fakeStatusHandler, apiAuthRouter);
+routerApi.use("/file", jsonParser, userRole, fakeStatusHandler, apiFileRouter);
+routerApi.use("/mock", jsonParser, userRole, fakeStatusHandler, apiMockRouter);
+routerApi.use("/", apiGetDocs);
+routerApi.use("/swagger", swaggerUi.serve);
+routerApi.get("/swagger", swaggerUi.setup(swaggerDoc, swaggerOpts));

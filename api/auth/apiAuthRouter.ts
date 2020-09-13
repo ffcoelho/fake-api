@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { apiPostAuthLogin } from "./apiPostAuthLogin";
+import { apiAuthPostLogin } from "./apiAuthPostLogin";
 
 export const apiAuthRouter = Router();
 
-apiAuthRouter.route("/").post(apiPostAuthLogin);
+apiAuthRouter.route("/").post(apiAuthPostLogin);

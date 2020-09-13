@@ -19,13 +19,13 @@ export const fileUploader: UserRequestHandler = async (req, res, next) => {
         next();
       }
     });
-    var form = postFile.form();
+    const form = postFile.form();
     form.append('file', req.file.buffer, {
       filename: req.file.originalname,
       contentType: req.file.mimetype
     });
   } catch (err) {
-    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "Something went wrong");
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: upload error");
     return res.status(400).json(apiRes.obj);
   }
 }

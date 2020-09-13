@@ -16,7 +16,7 @@ export const apiMockGetType: UserRequestHandler = async (req, res, next) => {
     apiRes.obj.auth = apiRes.obj.role !== "default";
     res.status(200).json(apiRes.obj);
   } catch (error) {
-    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "Something went wrong");
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: something went wrong");
     return res.status(400).json(apiRes.obj);
   }
 };

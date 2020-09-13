@@ -1,25 +1,31 @@
 import multer from "multer";
 import { UserRequestHandler } from "../model/express.model";
+import { FakeApiResponse, FakeApiResponseType } from "../model/fakeApi.model";
 
 const memStorage = multer.memoryStorage();
-const upload = multer({ storage: memStorage, limits: { fileSize: 300000 } }).single("file");
+const upload = multer({ storage: memStorage, limits: { fileSize: 307200 } }).single("file");
 
 export const fileHandler: UserRequestHandler = async (req, res, next) => {
   try {
     upload(req, res, function (err: any) {
       if (err instanceof multer.MulterError) {
-        return res.status(400).json({ error: "FakeApiHelper: error", err });
+        const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: something went wrong");
+        // return res.status(400).json(apiRes.obj);
+        return res.status(400).json(err);
       } else if (err) {
-        return res.status(400).json({ error: "FakeApiHelper: error", err });
+        const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: something went wrong");
+        // return res.status(400).json(apiRes.obj);
+        return res.status(400).json(err);
       }
       if (!req.file) {
-        return res.status(400).json({ error: "FakeApiHelper: error" });
+        const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: no file");
+        return res.status(400).json(apiRes.obj);
       }
       next();
     });
   } catch (err) {
-    console.log(err);
-    res.status(400).json({ error: "FakeApiHelper: error" });
+    const apiRes: FakeApiResponse = new FakeApiResponse(FakeApiResponseType.ERROR, "FakeAPI ERROR: upload error");
+    return res.status(400).json(apiRes.obj);
   }
 }
 

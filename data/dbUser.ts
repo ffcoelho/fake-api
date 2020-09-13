@@ -49,11 +49,11 @@ userSchema.methods.generateAuthToken = async function() {
 userSchema.statics.findByCredentials = async (username: string, password: string) => {
   const user = await User.findOne({username}) as UserDocModel;
   if (!user) {
-    throw new Error();
+    return null;
   } else {
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      throw new Error();
+      return null;
     }
     return user;
   }

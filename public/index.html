@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FFCoelho</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Fake API helper</h1>
+    </div>
+    <div class="content">
+
+      <div class="content-info">
+        <p>Online REST API for developers.</p>
+        <p>Auth, Mock, File and Error.</p>
+      </div>
+
+      <h2>Base URL</h2>
+      <p class="mono">https://fake-api-helper.herokuapp.com</p>
+
+      <h2>Authentication</h2>
+
+      <h3>Login</h3>
+      <div class="route-header">
+        <p class="method post">POST</p>
+        <span class="route mono">/auth</span>
+      </div>
+      <div class="description">
+        <p class="mono">Username: "user", "admin"</p>
+        <p class="mono">Password: "fakeapi"</p>
+      </div>
+      <p class="route-info">Request body - application/json <span class="param-req mono">*required</span></p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-p">"username"</span><span class="h-w">: </span><span class="h-v">"user"<span class="h-w">,</span></span>
+  <span class="h-p">"password"</span><span class="h-w">: </span><span class="h-v">"fakeapi"</span>
+<span class="h-w">}</span></pre>
+      </div>
+      <p class="route-info">Response - 200</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w"><span class="h-p">"user"</span>: {</span>
+    <span class="h-w"><span class="h-p">"username"</span>: <span class="h-v">"user"</span>,</span>
+    <span class="h-w"><span class="h-p">"name"</span>: <span class="h-v">"User"</span>,</span>
+    <span class="h-w"><span class="h-p">"email"</span>: <span class="h-v">"user@user.sys"</span>,</span>
+    <span class="h-w"><span class="h-p">"photoUrl"</span>: <span class="h-v">"/photos/user.jpg"</span>,</span>
+    <span class="h-w"><span class="h-p">"role"</span>: <span class="h-v">"user"</span>,</span>
+    <span class="h-w"><span class="h-p">"token"</span>: <span class="h-v">"token"</span></span>
+  <span class="h-w">}</span>
+<span class="h-w">}</span></pre>
+      </div>
+
+      <h2>Mock</h2>
+
+      <h3>Users</h3>
+      <div class="route-header">
+        <p class="method post">GET</p>
+        <span class="route mono">/mock/users</span>
+      </div>
+      <div class="description">
+        <p class="mono">Total users: 100</p>
+      </div>
+      <p class="route-info">Request header</p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name                    Value</span>
+
+<span class="h-w">Authorization           Bearer token</span></pre>
+      </div>
+      <p class="route-info">Request query</p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name          Value          Default</span>
+
+<span class="h-w">page          1 - 100              1</span>
+<span class="h-w">count         1 - 100             10</span></pre>
+      </div>
+      <p class="route-info">Response - 200</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w"><span class="h-p">"auth"</span>: <span class="h-a">true</span>,</span>
+  <span class="h-w"><span class="h-p">"role"</span>: <span class="h-v">"user"</span>,</span>
+  <span class="h-w"><span class="h-p">"mock"</span>: {</span>
+    <span class="h-w"><span class="h-p">"page"</span>: <span class="h-n">1</span>,</span>
+    <span class="h-w"><span class="h-p">"count"</span>: <span class="h-n">10</span>,</span>
+    <span class="h-w"><span class="h-p">"nextPage"</span>: <span class="h-n">2</span>,</span>
+    <span class="h-w"><span class="h-p">"nextPageUrl"</span>: <span class="h-v">"/mock/users?page=2&count=10"</span>,</span>
+    <span class="h-w"><span class="h-p">"data"</span>: [</span>
+      <span class="h-w">{</span>
+        <span class="h-w"><span class="h-p">"username"</span>: <span class="h-v">"jamalia"</span>,</span>
+        <span class="h-w"><span class="h-p">"name"</span>: <span class="h-v">"Jamalia Guy"</span>,</span>
+        <span class="h-w"><span class="h-p">"email"</span>: <span class="h-v">"facilisis.suspendisse.commodo@lorem.co.uk"</span>,</span>
+        <span class="h-w"><span class="h-p">"photoUrl"</span>: <span class="h-v">"/photos/jamalia.jpg"</span></span>
+      <span class="h-w">},</span>
+      <span class="h-w">...</span>
+    <span class="h-w">]</span>
+  <span class="h-w">}</span>
+<span class="h-w">}</span></pre>
+      </div>
+
+      <h3>Generic items</h3>
+      <div class="route-header">
+        <p class="method post">GET</p>
+        <span class="route mono">/mock/items</span>
+      </div>
+      <div class="description">
+        <p class="mono">Max. items: 1.000.000</p>
+      </div>
+      <p class="route-info">Request header</p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name                    Value</span>
+
+<span class="h-w">Authorization           Bearer token</span></pre>
+      </div>
+      <p class="route-info">Request query</p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name          Value          Default</span>
+
+<span class="h-w">page          1 - 1000             1</span>
+<span class="h-w">count         1 - 100             10</span></pre>
+      </div>
+      <p class="route-info">Response - 200</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w"><span class="h-p">"auth"</span>: <span class="h-a">true</span>,</span>
+  <span class="h-w"><span class="h-p">"role"</span>: <span class="h-v">"user"</span>,</span>
+  <span class="h-w"><span class="h-p">"mock"</span>: {</span>
+    <span class="h-w"><span class="h-p">"page"</span>: <span class="h-n">1</span>,</span>
+    <span class="h-w"><span class="h-p">"count"</span>: <span class="h-n">10</span>,</span>
+    <span class="h-w"><span class="h-p">"nextPage"</span>: <span class="h-n">2</span>,</span>
+    <span class="h-w"><span class="h-p">"nextPageUrl"</span>: <span class="h-v">"/mock/items?page=2&count=10"</span>,</span>
+    <span class="h-w"><span class="h-p">"data"</span>: [</span>
+      <span class="h-w">{</span>
+        <span class="h-w"><span class="h-p">"n"</span>: <span class="h-a">1</span></span>
+      <span class="h-w">},</span>
+      <span class="h-w">...</span>
+    <span class="h-w">]</span>
+  <span class="h-w">}</span>
+<span class="h-w">}</span></pre>
+      </div>
+
+      <h2>File</h2>
+      <h3>Upload</h3>
+      <div class="route-header">
+        <p class="method post">POST</p>
+        <span class="route mono">/file/upload</span>
+      </div>
+      <div class="description">
+        <p class="mono">Single file (max. size: 300 KiB)</p>
+        <p class="mono">Download link expiration: 1 hour</p>
+      </div>
+      <p class="route-info">Request header</p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name                Value</span>
+
+<span class="h-w">Authorization       Bearer token</span></pre>
+      </div>
+      <p class="route-info">Request body - multipart/form-data <span class="param-req mono">*required</span></p>
+      <div class="highlight mono">
+<pre><span class="h-w">Name                Value</span>
+
+<span class="h-w">file                File</span></pre>
+      </div>
+      <p class="route-info">Response - 200</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w"><span class="h-p">"auth"</span>: <span class="h-a">true</span>,</span>
+  <span class="h-w"><span class="h-p">"role"</span>: <span class="h-v">"user"</span>,</span>
+  <span class="h-w"><span class="h-p">"file"</span>: {</span>
+    <span class="h-w"><span class="h-p">"id"</span>: <span class="h-v">"fileId"</span>,</span>
+    <span class="h-w"><span class="h-p">"url"</span>: <span class="h-v">"/file/download/fileId"</span>,</span>
+    <span class="h-w"><span class="h-p">"fileName"</span>: <span class="h-v">"fileName"</span>,</span>
+    <span class="h-w"><span class="h-p">"fileSize"</span>: <span class="h-n">123456</span></span>
+  <span class="h-w">}</span>
+<span class="h-w">}</span></pre>
+      </div>
+
+      <h2>Fake status</h2>
+      <h3>Error status (any request)</h3>
+      <div class="description">
+        <p class="mono">Client errors: 400, 401, 402, 403, 404, 405, 406, 407, 408, 409,
+          410, 411, 412, 413, 414, 415, 416, 417, 418, 420,
+          422, 423, 424, 425, 426, 428, 429, 431, 444, 449,
+          450, 451, 499.
+        </p>
+        <p class="mono">Server errors: 500, 501, 502, 503, 504, 505, 506,
+          507, 508, 509, 510, 511, 598, 599.
+        </p>
+      </div>
+      <p class="route-info">Request body - application/json</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w">...,</span>
+  <span class="h-w"><span class="h-p">"fakeStatus"</span>: {</span>
+    <span class="h-p">"code"</span><span class="h-w">: </span><span class="h-n">401<span class="h-w">,</span></span>
+    <span class="h-p">"message"</span><span class="h-w">: </span><span class="h-v">"Error message"</span>
+  <span class="h-w">}</span></pre>
+<span class="h-w">}</span></pre>
+      </div>
+      <p class="route-info">Response - 401</p>
+      <div class="highlight mono">
+<pre><span class="h-w">{</span>
+  <span class="h-w"><span class="h-p">"message"</span>: <span class="h-v">"Error message"</span></span>
+<span class="h-w">}</span></pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
